@@ -1,0 +1,2 @@
+# HAL
+Home Automation Language
