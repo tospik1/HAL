@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="">
+  <eClassifiers xsi:type="ecore:EClass" name="AutomationTask" abstract="true" interface="true">
+    <eOperations name="newOperation1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SmartHome">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="PhysicalAddress"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOperational"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roomActuator" upperBound="-1"
+        eType="#//Actuator" eOpposite="#//Actuator/home"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Room">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="room" lowerBound="1" upperBound="-1"
+        eType="#//SmartHome" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Device">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isActivated"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roomDevice" upperBound="-1"
+        eType="#//Room" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SensorDevice" eSuperTypes="#//Device"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Actuator" eSuperTypes="#//Device">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="controlCommandList"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeStamp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controlLog" upperBound="-1"
+        eType="#//ActivityLog" eOpposite="#//ActivityLog/actuator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="home" lowerBound="1" eType="#//SmartHome"
+        eOpposite="#//SmartHome/roomActuator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SensorReading">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="measuredValue"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeStamp"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sensorLog" upperBound="-1"
+        eType="#//ActivityLog" eOpposite="#//ActivityLog/activity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sensorDevice" lowerBound="1"
+        upperBound="-1" eType="#//SensorDevice" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ControlCommand">
+    <eLiterals name="LOCKDOOR"/>
+    <eLiterals name="TURNONHEATING" value="1"/>
+    <eLiterals name="TURNOFFHEATING" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityLog">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" upperBound="-1"
+        eType="#//SensorReading" eOpposite="#//SensorReading/sensorLog"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actuator" upperBound="-1"
+        eType="#//Actuator" eOpposite="#//Actuator/controlLog"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AutomationRule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="password"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="precondition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="action"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DeviceType">
+    <eLiterals name="TEMPERATURE"/>
+    <eLiterals name="MOVEMENT" value="1"/>
+    <eLiterals name="LIGHTS" value="2"/>
+    <eLiterals name="LOCKS" value="3"/>
+  </eClassifiers>
+</ecore:EPackage>
