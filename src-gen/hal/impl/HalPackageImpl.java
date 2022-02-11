@@ -636,9 +636,8 @@ public class HalPackageImpl extends EPackageImpl implements HalPackage {
 		initEAttribute(getAutomationRule_Precondition(), ecorePackage.getEBooleanObject(), "precondition", null, 0, 1,
 				AutomationRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAutomationRule_Action(), ecorePackage.getEString(), "action", null, 0, 1,
-				AutomationRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAutomationRule_Action(), this.getControlCommand(), "action", null, 0, 1, AutomationRule.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(controlCommandEEnum, ControlCommand.class, "ControlCommand");

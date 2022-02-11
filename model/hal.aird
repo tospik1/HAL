@@ -5,7 +5,7 @@
     <semanticResources>hal.genmodel</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_6VSAQItLEeyYTcyk5z-p1Q">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_6Yj9wItLEeyYTcyk5z-p1Q" name="hal" repPath="#_6Xr0AItLEeyYTcyk5z-p1Q" changeId="cf574977-83bd-4e28-82e8-5f2397fefdb0">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_6Yj9wItLEeyYTcyk5z-p1Q" name="hal" repPath="#_6Xr0AItLEeyYTcyk5z-p1Q" changeId="52b7ef19-1362-4b94-9e51-49d403a19366">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="hal.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -577,7 +577,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_nel8MItNEeyYTcyk5z-p1Q" name="action : EString" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_nel8MItNEeyYTcyk5z-p1Q" name="action : ControlCommand = LOCKDOOR" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="hal.ecore#//AutomationRule/action"/>
         <semanticElements xmi:type="ecore:EAttribute" href="hal.ecore#//AutomationRule/action"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_KfDY24tPEeyYTcyk5z-p1Q" labelAlignment="LEFT">

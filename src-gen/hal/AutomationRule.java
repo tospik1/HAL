@@ -69,24 +69,27 @@ public interface AutomationRule extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Action</b></em>' attribute.
+	 * The literals are from the enumeration {@link hal.ControlCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Action</em>' attribute.
-	 * @see #setAction(String)
+	 * @see hal.ControlCommand
+	 * @see #setAction(ControlCommand)
 	 * @see hal.HalPackage#getAutomationRule_Action()
 	 * @model
 	 * @generated
 	 */
-	String getAction();
+	ControlCommand getAction();
 
 	/**
 	 * Sets the value of the '{@link hal.AutomationRule#getAction <em>Action</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Action</em>' attribute.
+	 * @see hal.ControlCommand
 	 * @see #getAction()
 	 * @generated
 	 */
-	void setAction(String value);
+	void setAction(ControlCommand value);
 
 } // AutomationRule

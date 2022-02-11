@@ -3,6 +3,7 @@
 package hal.impl;
 
 import hal.AutomationRule;
+import hal.ControlCommand;
 import hal.HalPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -76,7 +77,7 @@ public class AutomationRuleImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ACTION_EDEFAULT = null;
+	protected static final ControlCommand ACTION_EDEFAULT = ControlCommand.LOCKDOOR;
 
 	/**
 	 * The cached value of the '{@link #getAction() <em>Action</em>}' attribute.
@@ -86,7 +87,7 @@ public class AutomationRuleImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected String action = ACTION_EDEFAULT;
+	protected ControlCommand action = ACTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,7 +157,7 @@ public class AutomationRuleImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getAction() {
+	public ControlCommand getAction() {
 		return action;
 	}
 
@@ -165,9 +166,9 @@ public class AutomationRuleImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAction(String newAction) {
-		String oldAction = action;
-		action = newAction;
+	public void setAction(ControlCommand newAction) {
+		ControlCommand oldAction = action;
+		action = newAction == null ? ACTION_EDEFAULT : newAction;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, HalPackage.AUTOMATION_RULE__ACTION, oldAction,
 					action));
@@ -206,7 +207,7 @@ public class AutomationRuleImpl extends MinimalEObjectImpl.Container implements 
 			setPrecondition((Boolean) newValue);
 			return;
 		case HalPackage.AUTOMATION_RULE__ACTION:
-			setAction((String) newValue);
+			setAction((ControlCommand) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -246,7 +247,7 @@ public class AutomationRuleImpl extends MinimalEObjectImpl.Container implements 
 		case HalPackage.AUTOMATION_RULE__PRECONDITION:
 			return PRECONDITION_EDEFAULT == null ? precondition != null : !PRECONDITION_EDEFAULT.equals(precondition);
 		case HalPackage.AUTOMATION_RULE__ACTION:
-			return ACTION_EDEFAULT == null ? action != null : !ACTION_EDEFAULT.equals(action);
+			return action != ACTION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
