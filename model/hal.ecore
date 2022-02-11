@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="hal" nsURI="http://www.example.org/hal" nsPrefix="hal">
+  <eClassifiers xsi:type="ecore:EClass" name="SmartHome">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="newAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOperational" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actuator" upperBound="-1"
+        eType="#//Actuator" eOpposite="#//Actuator/smarthome"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Room">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="home" eType="#//SmartHome"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Device">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//DeviceType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isActivated" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="room" upperBound="-1" eType="#//Room"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Actuator" eSuperTypes="#//Device">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="controlCommand" eType="#//ControlCommand"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeStamp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="smarthome" eType="#//SmartHome"
+        eOpposite="#//SmartHome/actuator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actuatorLog" upperBound="-1"
+        eType="#//ActivityLog" eOpposite="#//ActivityLog/actuator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SensorDevice" eSuperTypes="#//Device"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SensorReading">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="measuredValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeStamp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sensordevice" upperBound="-1"
+        eType="#//SensorDevice" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activityLog" upperBound="-1"
+        eType="#//ActivityLog" eOpposite="#//ActivityLog/activity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ControlCommand">
+    <eLiterals name="LOCKDOOR"/>
+    <eLiterals name="TURNONHEATING" value="1"/>
+    <eLiterals name="TURNOFFHEATING" value="2" literal="TURNOFFHEATING"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DeviceType">
+    <eLiterals name="TEMPERATURE"/>
+    <eLiterals name="MOVEMENT" value="1"/>
+    <eLiterals name="LIGHTS" value="2"/>
+    <eLiterals name="LOCKS" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityLog">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" upperBound="-1"
+        eType="#//SensorReading" eOpposite="#//SensorReading/activityLog"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actuator" upperBound="-1"
+        eType="#//Actuator" eOpposite="#//Actuator/actuatorLog"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AutomationRule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="precondition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>
