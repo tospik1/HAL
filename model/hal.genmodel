@@ -1,60 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
-    modelDirectory="/hal/src-gen" creationIcons="false" editDirectory="/hal.edit/src-gen"
-    editorDirectory="/hal.editor/src-gen" modelPluginID="hal" modelName="Hal" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
-    copyrightFields="false" operationReflection="true" importOrganizing="true">
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/hal/src/ca.mcgill.emf.examples" modelPluginID="hal"
+    modelName="Hal" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
   <foreignModel>hal.ecore</foreignModel>
-  <testsDirectory xsi:nil="true"/>
   <genPackages prefix="Hal" disposableProviderFactory="true" ecorePackage="hal.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="hal.ecore#//ControlCommand">
-      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//ControlCommand/LOCKDOOR"/>
-      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//ControlCommand/TURNONHEATING"/>
-      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//ControlCommand/TURNOFFHEATING"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="hal.ecore#//ControlCommandType">
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//ControlCommandType/LOCKDOOR"/>
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//ControlCommandType/TURNONHEATING"/>
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//ControlCommandType/TURNOFFHEATING"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="hal.ecore#//DeviceType">
-      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//DeviceType/TEMPERATURE"/>
-      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//DeviceType/MOVEMENT"/>
-      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//DeviceType/LIGHTS"/>
-      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//DeviceType/LOCKS"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="hal.ecore#//ActuatorType">
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//ActuatorType/HEATER"/>
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//ActuatorType/LOCK"/>
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//ActuatorType/LIGHTSWITCH"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="hal.ecore#//SensorType">
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//SensorType/TEMPERATURE"/>
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//SensorType/MOVEMENT"/>
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//SensorType/LIGHT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="hal.ecore#//Operator">
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//Operator/AND"/>
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//Operator/OR"/>
+      <genEnumLiterals ecoreEnumLiteral="hal.ecore#//Operator/NOT"/>
     </genEnums>
     <genClasses ecoreClass="hal.ecore#//SmartHome">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//SmartHome/newAttribute"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//SmartHome/isOperational"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//SmartHome/actuator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//SmartHome/address"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//SmartHome/room"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//SmartHome/automationrule"/>
     </genClasses>
     <genClasses ecoreClass="hal.ecore#//Room">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Room/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//Room/home"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//Room/device"/>
     </genClasses>
     <genClasses ecoreClass="hal.ecore#//Device">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Device/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Device/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Device/isActivated"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//Device/room"/>
     </genClasses>
     <genClasses ecoreClass="hal.ecore#//Actuator">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Actuator/controlCommand"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Actuator/timeStamp"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Actuator/smarthome"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Actuator/actuatorLog"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Actuator/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Actuator/controlcommand"/>
     </genClasses>
-    <genClasses ecoreClass="hal.ecore#//SensorDevice"/>
+    <genClasses ecoreClass="hal.ecore#//Sensor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//Sensor/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Sensor/sensorreading"/>
+    </genClasses>
     <genClasses ecoreClass="hal.ecore#//SensorReading">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//SensorReading/measuredValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//SensorReading/timeStamp"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//SensorReading/sensordevice"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//SensorReading/timestamp"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//SensorReading/activityLog"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//SensorReading/sensor"/>
     </genClasses>
     <genClasses ecoreClass="hal.ecore#//ActivityLog">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//ActivityLog/activity"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//ActivityLog/actuator"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//ActivityLog/automationrule"/>
     </genClasses>
     <genClasses ecoreClass="hal.ecore#//AutomationRule">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//AutomationRule/password"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//AutomationRule/precondition"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//AutomationRule/action"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//AutomationRule/precondition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//AutomationRule/action"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//AutomationRule/isActive"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//AutomationRule/activitylog"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//AutomationRule/timestamp"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//HomeAutomationSystem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//HomeAutomationSystem/smarthome"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//HomeAutomationSystem/activitylog"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//Precondition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//Precondition/relationalterms"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference hal.ecore#//Precondition/booleanoperators"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//Action">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//Action/controlcommand"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//RelationalTerms">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//RelationalTerms/term"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//BooleanOperators">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//BooleanOperators/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="hal.ecore#//ControlCommand">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//ControlCommand/timestamp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute hal.ecore#//ControlCommand/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//ControlCommand/action"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference hal.ecore#//ControlCommand/actuator"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
